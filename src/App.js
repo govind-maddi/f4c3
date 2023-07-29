@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import React,{useRef, useState} from 'react';
+import Login from './Components/Login';
+import Profile from './Components/Profile';
+
+export const User = React.createContext();
+export const Setuser = React.createContext();
 
 function App() {
+
+  const [userid,setUserId] = useState('');
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <User.Provider value={userid}>
+        <Setuser.Provider value={setUserId}>
+          <Login></Login>
+          <Profile></Profile>
+        </Setuser.Provider>
+      </User.Provider>
     </div>
   );
 }
